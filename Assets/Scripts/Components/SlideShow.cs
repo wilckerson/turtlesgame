@@ -15,9 +15,14 @@ public enum SlideShowState
 public class SlideShow : MonoBehaviour
 {
 
+		public delegate void SlideShowStopEvent ();
+
+		public event SlideShowStopEvent OnSlideShowStop;
+
 		public List<Graphic> Slides;
 		public float DelaySeconds = 3;
 		public float TransitionVelocity = 0.1f;
+		public bool AutoStart = true;
 		int slidesCount = 0;
 		int currentSlide = 0;
 		float currentAlpha = 0;
@@ -36,11 +41,13 @@ public class SlideShow : MonoBehaviour
 										throw new UnityException ("You must set all slides.");
 								}
 								slide.color = new Color (slide.color.r, slide.color.g, slide.color.b, 0);
-								slide.gameObject.SetActive(true);
+								slide.gameObject.SetActive (true);
 						}
 
-						//Start the transitions
-						state = SlideShowState.FadeIn;
+						if (AutoStart) {
+								//Start the transitions
+								Play ();
+						}
 				}
 		}
 	
@@ -67,8 +74,8 @@ public class SlideShow : MonoBehaviour
 				default:
 						break;
 				}
-				Debug.Log (currentSlide);
-				Debug.Log (currentAlpha);
+				//Debug.Log (currentSlide);
+				//Debug.Log (currentAlpha);
 
 		}
 
@@ -96,11 +103,22 @@ public class SlideShow : MonoBehaviour
 								state = SlideShowState.FadeIn;
 						} else {
 								state = SlideShowState.Stoped;
+								currentSlide = Slides.Count - 1;
+								if (OnSlideShowStop != null) {
+										OnSlideShowStop ();
+								}
 						}
 				}
 		
 				var slide = Slides [currentSlide];
 				slide.color = new Color (slide.color.r, slide.color.g, slide.color.b, currentAlpha);
 		
+		}
+
+		public void Play ()
+		{
+				currentSlide = 0;
+				currentAlpha = 0;
+				state = SlideShowState.FadeIn;
 		}
 }
