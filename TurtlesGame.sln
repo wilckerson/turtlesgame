@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{5C58B32A-98BF-238E-DB5E-33F06025BAF9}") = "TurtlesGame", "Assembly-CSharp.csproj", "{1096252C-FC3C-FCE3-4EEA-449124210792}"
 EndProject
+Project("{5C58B32A-98BF-238E-DB5E-33F06025BAF9}") = "TurtlesGame", "Assembly-UnityScript.unityproj", "{EFC463B8-39C8-C348-8835-2523C017FB6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{1096252C-FC3C-FCE3-4EEA-449124210792}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1096252C-FC3C-FCE3-4EEA-449124210792}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1096252C-FC3C-FCE3-4EEA-449124210792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFC463B8-39C8-C348-8835-2523C017FB6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFC463B8-39C8-C348-8835-2523C017FB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFC463B8-39C8-C348-8835-2523C017FB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFC463B8-39C8-C348-8835-2523C017FB6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-			GlobalSection(MonoDevelopProperties) = preSolution
+									GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
