@@ -48,7 +48,9 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Components\SlideShow.cs" />
      <Compile Include="Assets\Scripts\FollowCamera.cs" />
+     <Compile Include="Assets\Scripts\GroundReposition.cs" />
      <Compile Include="Assets\Scripts\HistoryManager.cs" />
+     <Compile Include="Assets\Scripts\LevelMovement.cs" />
      <Compile Include="Assets\Scripts\TurtleMovement.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
