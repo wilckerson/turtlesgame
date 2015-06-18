@@ -13,6 +13,6 @@ public class LevelMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		transform.position += new Vector3 (0, 0, -Velocity);
+		transform.position += new Vector3 (0, 0, -Velocity * Time.deltaTime);
 	}
 }

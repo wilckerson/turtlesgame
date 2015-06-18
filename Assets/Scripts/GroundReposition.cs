@@ -6,6 +6,7 @@ public class GroundReposition : MonoBehaviour {
 	public float MinZ = -120f;
 	public float NewZ = 89.5f;
 	public bool ApplyRotation = true;
+	public Transform otherGroundHandler;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,11 @@ public class GroundReposition : MonoBehaviour {
 	void Update () {
 	
 		if (transform.position.z <= MinZ) {
-			transform.position = new Vector3(transform.position.x,transform.position.y,NewZ);
+			transform.position = new Vector3(
+				transform.position.x,
+				transform.position.y,
+				otherGroundHandler.position.z+200//NewZ
+				);
 
 			if(ApplyRotation)
 			{
