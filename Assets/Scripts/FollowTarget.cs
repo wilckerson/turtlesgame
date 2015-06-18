@@ -5,11 +5,14 @@ public class FollowTarget: MonoBehaviour {
 	public GameObject target;
 	public float damping = 1;
 	public bool LockRotation = false;
+	public bool ApplyOffset = true;
 
 	Vector3 offset;
 	
 	void Start() {
-		offset = target.transform.position - transform.position;
+		if (ApplyOffset) {
+			offset = target.transform.position - transform.position;
+		}
 	}
 	
 	void LateUpdate() {
