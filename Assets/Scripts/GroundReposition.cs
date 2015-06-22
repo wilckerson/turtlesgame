@@ -3,31 +3,48 @@ using System.Collections;
 
 public class GroundReposition : MonoBehaviour {
 
-	public float MinZ = -120f;
-	public float NewZ = 89.5f;
+
+	public float MinZ = -300;
 	public bool ApplyRotation = true;
-	public Transform otherGroundHandler;
+	public float Velocity = 100;
+
+	public Transform GroundA;
+	public Transform GroundB;
+
+	private float Size = 0;
 
 	// Use this for initialization
 	void Start () {
 	
+		Size = GroundA.position.z - GroundB.position.z;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-		if (transform.position.z <= MinZ) {
-			transform.position = new Vector3(
-				transform.position.x,
-				transform.position.y,
-				otherGroundHandler.position.z+200//NewZ
-				);
+		GroundA.position += new Vector3 (0, 0, -Velocity * Time.deltaTime);
+		GroundB.position += new Vector3 (0, 0, -Velocity * Time.deltaTime);
+
+		if (GroundA.position.z <= MinZ) {
+			GroundA.position = GroundB.position + new Vector3(0,0,Size);
 
 			if(ApplyRotation)
 			{
 				int sign = (Random.value > 0.5f) ? 1 : -1;
-				transform.eulerAngles += new Vector3(0,sign * 90,0);
+				GroundA.eulerAngles += new Vector3(0,sign * 90,0);
 			}
 		}
+
+		if (GroundB.position.z <= MinZ) {
+			GroundB.position = GroundA.position + new Vector3(0,0,Size);
+
+			if(ApplyRotation)
+			{
+				int sign = (Random.value > 0.5f) ? 1 : -1;
+				GroundB.eulerAngles += new Vector3(0,sign * 90,0);
+			}
+		}
+
 	}
+
 }
