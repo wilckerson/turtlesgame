@@ -6,7 +6,7 @@ public class GroundReposition : MonoBehaviour {
 
 	public float MinZ = -300;
 	public bool ApplyRotation = true;
-	public float Velocity = 100;
+	//public float Velocity = 100;
 
 	public Transform GroundA;
 	public Transform GroundB;
@@ -22,8 +22,8 @@ public class GroundReposition : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		GroundA.position += new Vector3 (0, 0, -Velocity * Time.deltaTime);
-		GroundB.position += new Vector3 (0, 0, -Velocity * Time.deltaTime);
+		//GroundA.position += new Vector3 (0, 0, -Velocity * Time.deltaTime);
+		//GroundB.position += new Vector3 (0, 0, -Velocity * Time.deltaTime);
 
 		if (GroundA.position.z <= MinZ) {
 			GroundA.position = GroundB.position + new Vector3(0,0,Size);
