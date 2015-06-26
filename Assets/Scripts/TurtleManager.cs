@@ -3,22 +3,15 @@ using System.Collections;
 
 public class TurtleManager : MonoBehaviour {
 
-	public GameObject CoinCounterPrefab;
+	public GameManager GameManager;
+
 
 	void OnTriggerEnter(Collider other){
 		Debug.Log("Trigger " + other.gameObject.tag);
 
 		if (other.gameObject.tag == GameTags.TagCoin) {
 
-			//Add the counter
-			GameManager.Coins++;
-
-			//Destroy the coin
-			Destroy(other.gameObject);
-
-			//instantiate coin counter sprite
-			Instantiate(CoinCounterPrefab, transform.position, Quaternion.identity);
-
+			GameManager.GotCoin(other.gameObject,transform.position);
 		}
 
 	}
