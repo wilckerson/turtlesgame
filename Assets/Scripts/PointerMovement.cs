@@ -10,6 +10,9 @@ public class PointerMovement : MonoBehaviour {
 
 	public float zDist = 10f;
 
+	public bool startOnCenter = true;
+	private bool centered = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -30,6 +33,10 @@ public class PointerMovement : MonoBehaviour {
 //		transform.localPosition = new Vector3 (px, py, transform.localPosition.z);
 
 		var v3 = Input.mousePosition;
+		if (startOnCenter && centered == false) {
+			v3 = new Vector3( Screen.width / 2, Screen.height / 2, 0 );
+			centered = true;
+		}
 		v3.z = zDist;
 		v3 = Camera.main.ScreenToWorldPoint(v3);
 
