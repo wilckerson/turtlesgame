@@ -48,14 +48,14 @@ public class PointerMovement : MonoBehaviour
 		v3.z = zDist;
 		v3 = Camera.main.ScreenToWorldPoint (v3);
 
-		/*
+
 		transform.position = new Vector3(
 			Mathf.Clamp(v3.x,MinPosX,MaxPosX),
 			Mathf.Clamp(v3.y,MinPosY,MaxPosY),
 			v3.z
 			);
-			*/
 
+		/*
 		if (startInputPos == null && Input.GetMouseButtonDown (0)) {
 			startInputPos = Input.mousePosition;
 			startTime = Time.time;
@@ -82,6 +82,7 @@ public class PointerMovement : MonoBehaviour
 			startInputPos = null;
 
 		}
+		*/
 	}
 
 	Vector2 GetDirection (Vector2 gestureDelta)
