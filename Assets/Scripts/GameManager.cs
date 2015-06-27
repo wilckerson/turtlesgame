@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour, IVelocity {
 		Instantiate(CoinCounterPrefab, turtlePos, Quaternion.identity);
 		
 		//Speed-Up
-		MainVelocity -= new Vector3 (0, 0, 1f);
+		MainVelocity -= new Vector3 (0, 0, 2f);
 	}
 
 }

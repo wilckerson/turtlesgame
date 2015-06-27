@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour {
 	public GameObject Prefab;
 	public Vector3 MinRandomPosition;
 	public Vector3 MaxRandomPosition;
+	public bool OnlyExternalPosition = false;
 	float oldTime = 0;
 
 	// Use this for initialization
@@ -24,11 +25,23 @@ public class Spawner : MonoBehaviour {
 			oldTime = Time.time;
 
 			//Debug.Log("Interval");
-			var randomPos = new Vector3(
+			var randomPos = Vector3.zero;
+			if(OnlyExternalPosition)
+			{
+				randomPos = new Vector3(
+					Random.Range(-1,1) < 0 ? MinRandomPosition.x : MaxRandomPosition.x,
+					Random.Range(-1,1) < 0 ? MinRandomPosition.y: MaxRandomPosition.y,
+					Random.Range(-1,1) < 0 ? MinRandomPosition.z: MaxRandomPosition.z
+					);
+			}
+			else
+			{
+			 randomPos = new Vector3(
 								Random.Range(MinRandomPosition.x,MaxRandomPosition.x),
 								Random.Range(MinRandomPosition.y,MaxRandomPosition.y),
 								Random.Range(MinRandomPosition.z,MaxRandomPosition.z)
 				);
+			}
 
 			var newPrefab = (GameObject)Instantiate(Prefab, transform.position + randomPos, Quaternion.identity);
 
