@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour, IVelocity {
 			UpdateTxtCoins ();
 
 			//Speed-Up
-			MainVelocity -= new Vector3 (0, 0, 7f);
+			MainVelocity -= new Vector3 (0, 0, 20f);
 		}
 	}
 
