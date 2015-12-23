@@ -3,9 +3,12 @@ using System.Collections;
 
 public class TouchPad : MonoBehaviour {
 
+	public Transform turn3d;
+
 	public Transform pointer3D;
 	public float pointer3dDistX = 3;
-	public float pointer3dDistY = 3;
+	public float pointer3dMinDistY = -3.5f;
+	public float pointer3dMaxDistY = 4.5f;
 
 	public RectTransform uiPointer;
 	public RectTransform uiPanel;
@@ -77,10 +80,30 @@ public class TouchPad : MonoBehaviour {
 				(uiPanel.rect.height / 2) * axis.y
 			);
 
-			pointer3D.position = new Vector3 (
-				pointer3dDistX * (axis.x/uiClampMax),
-				pointer3dDistY * (axis.y/uiClampMax),
-				0);
+			var clampY = (axis.y / uiClampMax);
+
+			var distY = Mathf.Abs(clampY) * (clampY > 0 ? pointer3dMaxDistY : pointer3dMinDistY);
+
+
+			
+			if (turn3d != null) {
+				turn3d.Rotate (new Vector3 (0, axis.x * 2, 0));
+				//Vector3 RIGHT = turn3d.TransformDirection(Vector3.right);
+				//Vector3 FORWARD = turn3d.TransformDirection(Vector3.forward);
+
+				//turn3d.localPosition += RIGHT * axis.x;
+				//turn3d.localPosition += FORWARD * axis.y;
+
+				turn3d.position += turn3d.up * Time.deltaTime * (40 * axis.y);
+			} else {
+				pointer3D.position = new Vector3 (
+					pointer3dDistX * (axis.x/uiClampMax),
+					distY,
+					pointer3D.position.z);
+			}
+		}
+		if (turn3d != null) {
+			turn3d.position += turn3d.forward * Time.deltaTime * 30;
 		}
 
 		//Debug.Log(isDown);
