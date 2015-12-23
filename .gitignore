@@ -2,6 +2,7 @@
 # Builds
 #=================#
 Builds/
+*.apk
 
 # =============== #
 # Unity generated #

@@ -97,7 +97,7 @@ public class PointerMovement : MonoBehaviour
 			
 		if (angle > -angleRange && angle < angleRange) {
 			Debug.Log ("LEFT");
-			direction = Vector2.left;
+			direction = Vector2.up;
 		} else if (angle > angleRange && angle < angleRange * 3) {
 			Debug.Log ("UP-LEFT");
 			direction = Vector2.up + Vector2.left;
