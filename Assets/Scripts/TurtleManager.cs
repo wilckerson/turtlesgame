@@ -10,8 +10,8 @@ public class TurtleManager : MonoBehaviour {
 		Debug.Log("Trigger " + other.gameObject.tag);
 
 		if (other.gameObject.tag == GameTags.TagCoin) {
-
-			GameManager.GotCoin(other.gameObject,transform.position);
+			Destroy (other.gameObject);
+			//GameManager.GotCoin(other.gameObject,transform.position);
 		}
 
 	}

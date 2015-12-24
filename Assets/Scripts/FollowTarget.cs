@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class FollowTarget: MonoBehaviour {
-	public GameObject target;
+	public Transform target;
 	public float damping = 1;
 	public bool LockRotation = false;
 	public bool ApplyOffset = true;
@@ -23,7 +23,10 @@ public class FollowTarget: MonoBehaviour {
 //		float angleZ = Mathf.LerpAngle(currentAngle.z, desiredAngle.z, Time.deltaTime * damping);
 //		
 
-		Quaternion rotation = Quaternion.Euler(target.transform.eulerAngles.x,target.transform.eulerAngles.y,0);
+		Quaternion rotation = Quaternion.Euler(
+			target.eulerAngles.x,
+			target.eulerAngles.y,
+			0);
 //		transform.position = target.transform.position - (rotation * offset);
 
 		var finalPosition = target.transform.position - (rotation * offset);
@@ -33,10 +36,11 @@ public class FollowTarget: MonoBehaviour {
 			Mathf.Lerp(transform.position.y, finalPosition.y,Time.deltaTime * damping),
 			Mathf.Lerp(transform.position.z, finalPosition.z,Time.deltaTime * damping));
 
-		float angleZ = Mathf.LerpAngle(transform.localEulerAngles.z,target.transform.localEulerAngles.z,Time.deltaTime * damping);
+		float angleZ = Mathf.LerpAngle(transform.localEulerAngles.z,target.localEulerAngles.z,Time.deltaTime * damping);
 
 		if (!LockRotation) {
-						transform.LookAt (target.transform);
+			
+			transform.LookAt (target);
 			transform.localEulerAngles = new Vector3(
 				transform.localEulerAngles.x,
 				transform.localEulerAngles.y,

@@ -12,6 +12,8 @@ public class BasicMovement : MonoBehaviour
 	public Vector3 Velocity;
 	public GameObject Reference;
 
+	public bool relative = false;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -29,6 +31,10 @@ public class BasicMovement : MonoBehaviour
 				vel = comp.GetVelocity ();
 			}
 		}
-		transform.position += vel * Time.deltaTime;
+		if (relative) {
+			transform.Translate (vel * Time.deltaTime);
+		} else {
+			transform.position += vel * Time.deltaTime;
+		}
 	}
 }
