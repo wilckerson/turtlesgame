@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour, IVelocity {
 	public Text TxtCoins;
 
 	int coins = 0;
-	int nextLevelCoins = 5;
+	int nextLevelCoins = 7;
 	int level = 1;
 
 	public Vector3 GetVelocity(){
@@ -27,17 +27,17 @@ public class GameManager : MonoBehaviour, IVelocity {
 	void Update () {
 	
 		//Simple next level
-		if (coins >= nextLevelCoins) {
-			level++;
-			UpdateTxtLevel();
-
-			coins = 0;
-			nextLevelCoins = 3 + (level * 2);
-			UpdateTxtCoins ();
-
-			//Speed-Up
-			MainVelocity -= new Vector3 (0, 0, 20f);
-		}
+//		if (coins >= nextLevelCoins) {
+//			level++;
+//			UpdateTxtLevel();
+//
+//			coins = 0;
+//			nextLevelCoins = 3 + (level * 2);
+//			UpdateTxtCoins ();
+//
+//			//Speed-Up
+//			MainVelocity -= new Vector3 (0, 0, 20f);
+//		}
 	}
 
 	public void GotCoin(GameObject coinObj,Vector3 turtlePos){
@@ -54,12 +54,22 @@ public class GameManager : MonoBehaviour, IVelocity {
 
 	}
 
-	void UpdateTxtCoins(){
+	public void GotSpike(){
+		GameOverManager.Coins = coins;
+		GameOverManager.LevelCoins = nextLevelCoins;
 
-		TxtCoins.text = string.Format ("{0}/{1}", coins, nextLevelCoins);
+		SceneManager.Instance.LoadGameOverScene();
+	}
+
+	void UpdateTxtCoins(){
+		if (TxtCoins != null) {
+			TxtCoins.text = string.Format ("{0}/{1}", coins, nextLevelCoins);
+		}
 	}
 
 	void UpdateTxtLevel(){
-		TxtLevel.text = string.Format ("Level {0}", level);
+		if (TxtLevel != null) {
+			TxtLevel.text = string.Format ("Level {0}", level);
+		}
 	}
 }

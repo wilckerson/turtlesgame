@@ -21,7 +21,7 @@ public class BasicMovement : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
 	{
 	
 		var vel = Velocity;

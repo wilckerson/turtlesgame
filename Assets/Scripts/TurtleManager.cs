@@ -11,7 +11,11 @@ public class TurtleManager : MonoBehaviour {
 
 		if (other.gameObject.tag == GameTags.TagCoin) {
 			Destroy (other.gameObject);
-			//GameManager.GotCoin(other.gameObject,transform.position);
+			GameManager.GotCoin(other.gameObject,transform.position);
+		}
+		else if (other.gameObject.tag == GameTags.Spike) {
+			//Application.LoadLevel (Application.loadedLevelName);
+			GameManager.GotSpike();
 		}
 
 	}
