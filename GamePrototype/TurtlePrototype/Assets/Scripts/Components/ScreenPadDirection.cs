@@ -45,7 +45,7 @@ public class ScreenPadDirection : MonoBehaviour {
 				Mathf.Clamp ((touchPos.y - (Screen.height/2))/((Screen.height/2) * percentageY), -1, 1)
 			);
 
-			Debug.Log (string.Format ("ScreePadDirection: {0}", direction));
+			//Debug.Log (string.Format ("ScreePadDirection: {0}", direction));
 		}
 	}
 
