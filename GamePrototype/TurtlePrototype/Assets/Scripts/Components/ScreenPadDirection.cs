@@ -6,7 +6,7 @@ public class ScreenPadDirection : MonoBehaviour {
 	public float percentageX = 0.8f;
 	public float percentageY = 0.7f;
 
-
+	Vector2 touchPos;
 	Vector2 direction;
 	bool isDown = false;
 
@@ -18,7 +18,7 @@ public class ScreenPadDirection : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		Vector2 touchPos = Vector2.zero;
+
 
 		if (Input.touchSupported) {
 			isDown = false;
@@ -51,5 +51,9 @@ public class ScreenPadDirection : MonoBehaviour {
 
 	public Vector2 GetDirection(){
 		return direction;
+	}
+
+	public Vector2 getTouchPos(){
+		return touchPos;
 	}
 }

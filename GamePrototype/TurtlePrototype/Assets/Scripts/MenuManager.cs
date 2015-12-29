@@ -25,7 +25,7 @@ public class MenuManager : MonoBehaviour {
 		
 		TxtDist.text = string.Format ("{0}m",Dist);
 		TxtCoins.text = Coins.ToString ();
-		TxtTotal.text = Coins.ToString ();
+		TxtTotal.text = string.Format ("TOTAL: {0}",Coins);
 	}
 	
 	// Update is called once per frame

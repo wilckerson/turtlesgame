@@ -4,6 +4,8 @@ using System.Collections;
 public class TargetMovement : MonoBehaviour {
 
 	public float Dist = 2;
+	public float touchSize = 50;
+	public Transform Player;
 
 	ScreenPadDirection directionComponent;
 
@@ -21,11 +23,23 @@ public class TargetMovement : MonoBehaviour {
 	
 		if (directionComponent != null) {
 
-			transform.position = new Vector3 (
-				directionComponent.GetDirection().x * Dist,
-				transform.position.y,
-				transform.position.z);
+			var touchPos = directionComponent.getTouchPos ();
+
+			var screenPoint = Camera.main.WorldToScreenPoint (Player.transform.position);
+
+
+
+			if (Mathf.Abs (screenPoint.x - touchPos.x) <= touchSize 
+				&& Mathf.Abs (screenPoint.y - touchPos.y) <= touchSize) {
+
+				transform.position = new Vector3 (
+					directionComponent.GetDirection ().x * Dist,
+					transform.position.y,
+					transform.position.z);
+
+			}
 
 		}
 	}
+
 }
