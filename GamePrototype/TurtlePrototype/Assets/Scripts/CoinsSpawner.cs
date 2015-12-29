@@ -6,7 +6,7 @@ public class CoinsSpawner : MonoBehaviour {
 	public GameObject CoinPrefab;
 	public float MinInterval = 1;
 	public float MaxInterval = 3;
-	public float DistX = 2;
+	public float Dist = 3;
 	float time = 0;
 
 	// Use this for initialization
@@ -20,17 +20,10 @@ public class CoinsSpawner : MonoBehaviour {
 		if (time > Random.Range(MinInterval,MaxInterval)) {
 			time = 0;
 
-			float posX = 0;
-			float rnd = Random.Range (0, 1f);
-			//Debug.Log (rnd);
-			if (rnd < 0.33f) {
-				posX = -DistX;
-			}
-			else if(rnd > 0.66f){
-				posX = DistX;
-			}
-
-			Vector3 randomPos = new Vector3 (posX,0,0);
+			Vector3 randomPos = new Vector3 (
+				Random.Range (-Dist, Dist),
+				Random.Range (-Dist, Dist),
+				0);
 
 			Instantiate(
 				CoinPrefab,

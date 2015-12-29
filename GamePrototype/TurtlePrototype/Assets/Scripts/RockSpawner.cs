@@ -36,18 +36,10 @@ public class RockSpawner : MonoBehaviour {
 
 			if (rndRock <= Rock1x1Probality) {
 
-				//Random position
-				float posX = 0;
-				float rnd = Random.Range (0, 1f);
-				//Debug.Log (rnd);
-				if (rnd < 0.33f) {
-					posX = -DistX;
-				}
-				else if(rnd > 0.66f){
-					posX = DistX;
-				}
-
-				Vector3 randomPos = new Vector3 (posX,0,0);
+				Vector3 randomPos = new Vector3 (
+					Random.Range (-DistX, DistX),
+					Random.Range (-DistX, DistX),
+					0);
 
 				Instantiate(
 					Rock1x1Prefab,
@@ -65,7 +57,10 @@ public class RockSpawner : MonoBehaviour {
 					posX = -DistX/2;
 				}
 
-				Vector3 randomPos = new Vector3 (posX,0,0);
+				Vector3 randomPos = new Vector3 (
+					posX,
+					Random.Range (-DistX, DistX),
+					0);
 
 				Instantiate(
 					Rock2x1Prefab,

@@ -34,6 +34,6 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	public void OnClickPlay(){
-		SceneManager.LoadScene("Game");
+		SceneManager.LoadScene("Tunel");
 	}
 }
