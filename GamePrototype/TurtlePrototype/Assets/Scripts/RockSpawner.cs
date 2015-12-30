@@ -38,7 +38,7 @@ public class RockSpawner : MonoBehaviour {
 
 				Vector3 randomPos = new Vector3 (
 					Random.Range (-DistX, DistX),
-					Random.Range (-DistX, DistX),
+					0,//Random.Range (-DistX, DistX),
 					0);
 
 				Instantiate(
@@ -59,7 +59,7 @@ public class RockSpawner : MonoBehaviour {
 
 				Vector3 randomPos = new Vector3 (
 					posX,
-					Random.Range (-DistX, DistX),
+					0,//Random.Range (-DistX, DistX),
 					0);
 
 				Instantiate(

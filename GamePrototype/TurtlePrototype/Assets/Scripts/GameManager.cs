@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour {
 			//Game Over
 			MenuManager.Dist = dist;
 			MenuManager.Coins=coins;
-			SceneManager.LoadScene("Menu");
+			SceneManager.LoadScene(GameScreens.MENU);
 		}
 	}
 }

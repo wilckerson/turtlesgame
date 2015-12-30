@@ -15,6 +15,6 @@ public class MainManager : MonoBehaviour {
 	}
 
 	public void OnClickPlay(){
-		SceneManager.LoadScene("Tunel");
+		SceneManager.LoadScene(GameScreens.GAME_FULL);
 	}
 }
