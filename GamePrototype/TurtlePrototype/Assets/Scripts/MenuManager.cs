@@ -13,30 +13,30 @@ public class MenuManager : MonoBehaviour {
 			return instance; }}
 
 
-	public Text TxtDist;
+	public Text TxtLevel;
 	public Text TxtCoins;
 	public Text TxtTotal;
 	public Text TxtRecord;
 
-	public static int Dist;
+	public static int Level;
 	public static int Coins;
 
 	static int TotalCoins;
-	static int DistRecord;
+	static int LevelRecord;
 
 	// Use this for initialization
 	void Start () {
 		TotalCoins += Coins;
 
-		TxtDist.text = string.Format ("{0}m",Dist);
+		TxtLevel.text = string.Format ("Level {0}",Level);
 		TxtCoins.text = Coins.ToString ();
 		TxtTotal.text = string.Format ("TOTAL: {0}",TotalCoins);
 
-		if (DistRecord == 0 || Dist > DistRecord) {
+		if (LevelRecord == 0 || Level > LevelRecord) {
 			TxtRecord.text = "New Record! \\o/";
-			DistRecord = Dist;
+			LevelRecord = Level;
 		} else {
-			TxtRecord.text = string.Format ("Record: {0}m",DistRecord);
+			TxtRecord.text = string.Format ("Record: Level {0}",LevelRecord);
 		}
 	}
 	

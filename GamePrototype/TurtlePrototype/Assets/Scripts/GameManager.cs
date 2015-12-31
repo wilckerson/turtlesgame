@@ -78,12 +78,12 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		timer += Time.deltaTime;
-		if (timer >= 0.1) {
-			timer = 0;
-			dist++;
-			UpdateDistCounter ();
-		}
+//		timer += Time.deltaTime;
+//		if (timer >= 0.1) {
+//			timer = 0;
+//			dist++;
+//			UpdateDistCounter ();
+//		}
 
 		if (children == levelChildren) {
 			
@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour {
 		lives--;
 		if (lives == 0) {
 			//Game Over
-			MenuManager.Dist = dist;
+			MenuManager.Level = level;
 			MenuManager.Coins=coins;
 			SceneManager.LoadScene(GameScreens.MENU);
 		}
