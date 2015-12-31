@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour {
 			return instance;
 		}}
 
-	public GameObject Target;
-
 	public Text TxtCoins;
 	public Text TxtDist;
 	public Text TxtChildren;
@@ -30,7 +28,8 @@ public class GameManager : MonoBehaviour {
 
 	public Vector3 MainVelocity;
 
-	TouchPadFull screenPad;
+	public AnimatedUV TunelAnimatedUV;
+	public TouchPadFull TouchPadFullComponent;
 
 	int coins;
 	int dist;
@@ -53,7 +52,6 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		screenPad = Target.GetComponent<TouchPadFull> ();
 		heartCounter = GetComponent<HeartCounter> ();
 
 		//Application.targetFrameRate = 60;
@@ -68,7 +66,7 @@ public class GameManager : MonoBehaviour {
 		level = 1;
 		UpdateLevelCounter ();
 
-		hearts = 2;
+		hearts = 1;
 		UpdateHeartCounter ();
 
 		children = 0;
@@ -88,24 +86,10 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if (children == levelChildren) {
-			children = 0;
-			levelChildren += 2;
-			UpdateChildrenCounter ();
-
-			level++;
-			UpdateLevelCounter ();
-
-			showLevelCenterScreen = true;
-			showLevelTimer = 0;
-			TxtLevelCenterScreen.enabled = true;
-
-			Time.timeScale = 0.1f;
-
-			if(screenPad != null){
-				screenPad.enabled = false;
-			}
-
+			
+			NextLevel ();
 		}
+
 		if (showLevelCenterScreen) {
 			showLevelTimer += Time.deltaTime;
 
@@ -114,10 +98,33 @@ public class GameManager : MonoBehaviour {
 				showLevelCenterScreen = false;
 				TxtLevelCenterScreen.enabled = false;
 
-				if(screenPad != null){
-					screenPad.enabled = true;
+				if(TouchPadFullComponent != null){
+					TouchPadFullComponent.SetCanMove( true);
 				}
 			}
+		}
+	}
+
+	void NextLevel(){
+
+		MainVelocity.z -= 3;
+		TunelAnimatedUV.uvAnimationRate.y += 0.1f;
+
+		children = 0;
+		levelChildren += 2;
+		UpdateChildrenCounter ();
+
+		level++;
+		UpdateLevelCounter ();
+
+		showLevelCenterScreen = true;
+		showLevelTimer = 0;
+		TxtLevelCenterScreen.enabled = true;
+
+		Time.timeScale = 0.1f;
+
+		if(TouchPadFullComponent != null){
+			TouchPadFullComponent.SetCanMove( false);
 		}
 	}
 

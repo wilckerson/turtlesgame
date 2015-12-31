@@ -28,15 +28,16 @@ public class TouchPadFull : MonoBehaviour {
 	bool touchOutScreen = false;
 	Vector2 startDownScreenPos;
 	Vector3 startDownObjPos;
+	bool canMove = true;
 
 	// Use this for initialization
 	void Start () {
 	
 	}
 
-	void OnDisable() {
-		isDown = false;
-	}
+//	void OnDisable() {
+//		isDown = false;
+//	}
 
 
 	// Update is called once per frame
@@ -78,7 +79,11 @@ public class TouchPadFull : MonoBehaviour {
 				isDown = false;
 			}
 
-			if (isDown) {
+			if (!canMove) {
+				startDownObjPos = transform.position;
+			}
+
+			if (isDown && canMove) {
 				Vector2 currentPos = Input.mousePosition;
 					
 				if (Input.touchSupported) {
@@ -162,5 +167,9 @@ public class TouchPadFull : MonoBehaviour {
 			
 			}
 		}
+	}
+
+	public void SetCanMove(bool canMove){
+		this.canMove = canMove;
 	}
 }
