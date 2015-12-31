@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameTags{
 	public const string TagCoin = "TagCoin";
 	public const string TagHurt = "TagHurt";
+	public const string TagChild = "TagChild";
 
 }
 
@@ -19,25 +20,61 @@ public class GameManager : MonoBehaviour {
 			return instance;
 		}}
 
+	public GameObject Target;
+
 	public Text TxtCoins;
 	public Text TxtDist;
+	public Text TxtChildren;
+	public Text TxtLevel;
+	public Text TxtLevelCenterScreen;
 
 	public Vector3 MainVelocity;
+
+	TouchPadFull screenPad;
+
 	int coins;
 	int dist;
 	int lives;
-
+	int hearts;
 	float timer;
+	int children;
+	int levelChildren;
+	int level;
+
+	HeartCounter heartCounter;
+	bool showLevelCenterScreen;
+	float showLevelTimer = 0;
+
+	public bool IsChangingLevel{
+		get{
+			return showLevelCenterScreen;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
-		Application.targetFrameRate = 60;
+		screenPad = Target.GetComponent<TouchPadFull> ();
+		heartCounter = GetComponent<HeartCounter> ();
+
+		//Application.targetFrameRate = 60;
 		instance = this;
 		//MainVelocity = new Vector3(0,0,-15);
 		coins = 0;
 		dist = 0;
 		lives = 1;
 		timer = 0;
+		showLevelCenterScreen = false;
+
+		level = 1;
+		UpdateLevelCounter ();
+
+		hearts = 2;
+		UpdateHeartCounter ();
+
+		children = 0;
+		levelChildren = 3;
+		UpdateChildrenCounter ();
+
 	}
 	
 	// Update is called once per frame
@@ -49,6 +86,39 @@ public class GameManager : MonoBehaviour {
 			dist++;
 			UpdateDistCounter ();
 		}
+
+		if (children == levelChildren) {
+			children = 0;
+			levelChildren += 2;
+			UpdateChildrenCounter ();
+
+			level++;
+			UpdateLevelCounter ();
+
+			showLevelCenterScreen = true;
+			showLevelTimer = 0;
+			TxtLevelCenterScreen.enabled = true;
+
+			Time.timeScale = 0.1f;
+
+			if(screenPad != null){
+				screenPad.enabled = false;
+			}
+
+		}
+		if (showLevelCenterScreen) {
+			showLevelTimer += Time.deltaTime;
+
+			if (showLevelTimer > 0.15f) {
+				Time.timeScale = 1f;
+				showLevelCenterScreen = false;
+				TxtLevelCenterScreen.enabled = false;
+
+				if(screenPad != null){
+					screenPad.enabled = true;
+				}
+			}
+		}
 	}
 
 	void UpdateCoinsCounter(){
@@ -57,6 +127,22 @@ public class GameManager : MonoBehaviour {
 
 	void UpdateDistCounter(){
 		TxtDist.text = string.Format ("{0}m", dist);
+	}
+
+	void UpdateChildrenCounter(){
+		TxtChildren.text = string.Format ("{0}/{1}", children,levelChildren);
+	}
+
+	void UpdateLevelCounter(){
+		 TxtLevel.text = string.Format ("Level {0}", level);
+		TxtLevelCenterScreen.text = TxtLevel.text;
+		TxtLevelCenterScreen.enabled = false;
+	}
+
+	void UpdateHeartCounter(){
+		if (heartCounter != null) {
+			heartCounter.SetHearts (hearts);
+		}
 	}
 
 	public  void GotCoin(GameObject coinObj){
@@ -73,5 +159,11 @@ public class GameManager : MonoBehaviour {
 			MenuManager.Coins=coins;
 			SceneManager.LoadScene(GameScreens.MENU);
 		}
+	}
+
+	public void GotChild(GameObject childObj){
+		children++;
+		UpdateChildrenCounter ();
+		Destroy (childObj);
 	}
 }

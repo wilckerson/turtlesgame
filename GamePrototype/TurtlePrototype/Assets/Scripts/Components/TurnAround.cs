@@ -21,7 +21,7 @@ public class TurnAround : MonoBehaviour {
 //			transform.eulerAngles.z + RotationZ);
 
 
-		transform.Rotate (RotationX, RotationY, RotationZ,Space.World);
+		transform.Rotate (RotationX* Time.deltaTime, RotationY* Time.deltaTime, RotationZ* Time.deltaTime,Space.World);
 
 		/*
 		transform.eulerAngles += new Vector3 (

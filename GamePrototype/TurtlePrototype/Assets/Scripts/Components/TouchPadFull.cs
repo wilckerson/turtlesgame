@@ -34,6 +34,10 @@ public class TouchPadFull : MonoBehaviour {
 	
 	}
 
+	void OnDisable() {
+		isDown = false;
+	}
+
 
 	// Update is called once per frame
 	void Update () {

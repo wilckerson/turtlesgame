@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CoinsSpawner : MonoBehaviour {
+public class ChildrenSpawner : MonoBehaviour {
 
-	public GameObject CoinPrefab;
-	public int pulseMax = 10;
-
+	public GameObject Prefab;
 	public float MinInterval = 1;
 	public float MaxInterval = 3;
 	public float Dist = 3;
@@ -27,14 +25,10 @@ public class CoinsSpawner : MonoBehaviour {
 				Random.Range (-Dist, Dist),
 				0);
 
-			for (int i = 0; i < Random.Range (1, pulseMax); i++) {
-				randomPos.z = 4 * i;
-
-				Instantiate (
-					CoinPrefab,
-					transform.position + randomPos,
-					Quaternion.identity);
-			}
+			Instantiate(
+				Prefab,
+				transform.position + randomPos,
+				Quaternion.identity);
 
 		}
 	}
